@@ -1,0 +1,36 @@
+# Liens JSDelivr pour les images générées
+
+Voici les liens CDN rapides (JSDelivr) pour utiliser directement tes images depuis GitHub :
+
+## Nouveautés
+- Backdrop : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/nouveautes.backdrop.webp
+- Cover : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/nouveautes.cover.webp
+- Title : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/nouveautes.title.png
+
+## Populaires
+- Backdrop : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/populaires.backdrop.webp
+- Cover : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/populaires.cover.webp
+- Title : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/populaires.title.png
+
+## Prochainement
+- Backdrop : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/prochainement.backdrop.webp
+- Cover : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/prochainement.cover.webp
+- Title : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/prochainement.title.png
+
+## Mieux Notés
+- Backdrop : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/mieux_notes.backdrop.webp
+- Cover : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/mieux_notes.cover.webp
+- Title : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/mieux_notes.title.png
+
+## Recommandations
+- Backdrop : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/recommandations.backdrop.webp
+- Cover : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/recommandations.cover.webp
+- Title : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/recommandations.title.png
+
+## Plateformes de Streaming (Top 10)
+- Netflix : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/netflix_top10.backdrop.webp
+- Prime Video : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/prime_video_top10.backdrop.webp
+- Apple TV+ : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/apple_tv_top10.backdrop.webp
+- Disney+ : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/disney_top10.backdrop.webp
+- HBO Max : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/hbo_max_top10.backdrop.webp
+- Paramount+ : https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/paramount_top10.backdrop.webp

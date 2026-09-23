@@ -1,0 +1,196 @@
+
+  <!DOCTYPE html>
+  <html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Nuvio - Liens JSDelivr</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg: #090a0d;
+        --card-bg: rgba(255, 255, 255, 0.03);
+        --card-border: rgba(255, 255, 255, 0.08);
+        --text: #ffffff;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: 'Inter', sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        padding: 40px 20px;
+        min-height: 100vh;
+        background-image: radial-gradient(circle at top right, rgba(79, 70, 229, 0.15), transparent 40%),
+                          radial-gradient(circle at bottom left, rgba(236, 72, 153, 0.1), transparent 40%);
+      }
+      .header { text-align: center; margin-bottom: 50px; }
+      .header h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+        background: linear-gradient(to right, #a855f7, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .header p { color: rgba(255, 255, 255, 0.6); font-size: 1.1rem; }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 24px;
+        backdrop-filter: blur(10px);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        border-color: rgba(255, 255, 255, 0.15);
+      }
+      .card h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 20px; color: #e2e8f0; }
+      .buttons { display: flex; flex-direction: column; gap: 10px; }
+      button {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+        transition: all 0.2s;
+        font-family: inherit;
+      }
+      button:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
+      button:active { transform: scale(0.98); }
+      .toast {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: #10b981;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 30px;
+        font-weight: 600;
+        box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Nuvio Images</h1>
+      <p>Cliquez sur un bouton pour copier le lien CDN (JSDelivr)</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h2>Nouveautés</h2>
+        <div class="buttons">
+          <button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/nouveautes.backdrop.webp', this)">🖼️ Backdrop</button><button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/nouveautes.cover.webp', this)">📱 Cover</button><button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/nouveautes.title.webp', this)">🔤 Title</button>
+        </div>
+      </div>
+    
+      <div class="card">
+        <h2>Populaires</h2>
+        <div class="buttons">
+          <button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/populaires.backdrop.webp', this)">🖼️ Backdrop</button><button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/populaires.cover.webp', this)">📱 Cover</button><button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/populaires.title.webp', this)">🔤 Title</button>
+        </div>
+      </div>
+    
+      <div class="card">
+        <h2>Prochainement</h2>
+        <div class="buttons">
+          <button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/prochainement.backdrop.webp', this)">🖼️ Backdrop</button><button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/prochainement.cover.webp', this)">📱 Cover</button><button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/prochainement.title.webp', this)">🔤 Title</button>
+        </div>
+      </div>
+    
+      <div class="card">
+        <h2>Mieux notés</h2>
+        <div class="buttons">
+          <button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/mieux_notes.backdrop.webp', this)">🖼️ Backdrop</button><button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/mieux_notes.cover.webp', this)">📱 Cover</button><button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/mieux_notes.title.webp', this)">🔤 Title</button>
+        </div>
+      </div>
+    
+      <div class="card">
+        <h2>Recommandations</h2>
+        <div class="buttons">
+          <button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/recommandations.backdrop.webp', this)">🖼️ Backdrop</button><button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/recommandations.cover.webp', this)">📱 Cover</button><button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/recommandations.title.webp', this)">🔤 Title</button>
+        </div>
+      </div>
+    
+      <div class="card">
+        <h2>Top 10 Netflix</h2>
+        <div class="buttons">
+          <button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/netflix_top10.backdrop.webp', this)">🖼️ Backdrop</button>
+        </div>
+      </div>
+    
+      <div class="card">
+        <h2>Top 10 Prime Video</h2>
+        <div class="buttons">
+          <button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/prime_video_top10.backdrop.webp', this)">🖼️ Backdrop</button>
+        </div>
+      </div>
+    
+      <div class="card">
+        <h2>Top 10 Apple TV+</h2>
+        <div class="buttons">
+          <button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/apple_tv_top10.backdrop.webp', this)">🖼️ Backdrop</button>
+        </div>
+      </div>
+    
+      <div class="card">
+        <h2>Top 10 Disney+</h2>
+        <div class="buttons">
+          <button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/disney_top10.backdrop.webp', this)">🖼️ Backdrop</button>
+        </div>
+      </div>
+    
+      <div class="card">
+        <h2>Top 10 HBO Max</h2>
+        <div class="buttons">
+          <button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/hbo_max_top10.backdrop.webp', this)">🖼️ Backdrop</button>
+        </div>
+      </div>
+    
+      <div class="card">
+        <h2>Top 10 Paramount+</h2>
+        <div class="buttons">
+          <button onclick="copyLink('https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist/paramount_top10.backdrop.webp', this)">🖼️ Backdrop</button>
+        </div>
+      </div>
+    </div>
+    <div id="toast" class="toast">✅ Lien copié dans le presse-papier !</div>
+    <script>
+      function copyLink(url, btn) {
+        navigator.clipboard.writeText(url).then(() => {
+          const originalText = btn.innerHTML;
+          btn.innerHTML = '✅ Copié !';
+          btn.style.background = 'rgba(16, 185, 129, 0.2)';
+          btn.style.borderColor = '#10b981';
+          setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+            btn.style.borderColor = '';
+          }, 1500);
+          const toast = document.getElementById('toast');
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2500);
+        });
+      }
+    </script>
+  </body>
+  </html>
+  

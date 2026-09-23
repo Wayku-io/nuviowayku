@@ -14,7 +14,7 @@ const COLLECTIONS = [
     caption: 'Films & Séries • Dernières sorties',
     backdropOutput: 'nouveautes.backdrop.webp',
     coverOutput: 'nouveautes.cover.webp',
-    titleOutput: 'nouveautes.title.png',
+    titleOutput: 'nouveautes.title.webp',
     sortByPopularity: true,
     movieSource: `${BASE_URL}/catalog/movie/tmdb.discover.movie.sorties_digitales_copy.mpzretj9.json`,
     serieSource: `${BASE_URL}/catalog/series/tmdb.discover.movie.nouveaut_s_copy.mpa0h2yk.json`
@@ -26,7 +26,7 @@ const COLLECTIONS = [
     caption: 'Films & Séries • Tendances du moment',
     backdropOutput: 'populaires.backdrop.webp',
     coverOutput: 'populaires.cover.webp',
-    titleOutput: 'populaires.title.png',
+    titleOutput: 'populaires.title.webp',
     sortByPopularity: false,
     movieSource: `${BASE_URL}/catalog/movie/trakt.trending.movies.json`,
     serieSource: `${BASE_URL}/catalog/series/trakt.trending.shows.json`
@@ -38,7 +38,7 @@ const COLLECTIONS = [
     caption: 'Films & Séries • Les plus attendus',
     backdropOutput: 'prochainement.backdrop.webp',
     coverOutput: 'prochainement.cover.webp',
-    titleOutput: 'prochainement.title.png',
+    titleOutput: 'prochainement.title.webp',
     sortByPopularity: false,
     movieSource: `${BASE_URL}/catalog/movie/trakt.anticipated.movies.json`,
     serieSource: `${BASE_URL}/catalog/series/trakt.anticipated.shows.json`
@@ -50,7 +50,7 @@ const COLLECTIONS = [
     caption: 'Films & Séries • La crème de la crème',
     backdropOutput: 'mieux_notes.backdrop.webp',
     coverOutput: 'mieux_notes.cover.webp',
-    titleOutput: 'mieux_notes.title.png',
+    titleOutput: 'mieux_notes.title.webp',
     sortByPopularity: false,
     movieSource: `${BASE_URL}/catalog/movie/mdblist.101881.json`,
     serieSource: `${BASE_URL}/catalog/series/mdblist.101882.json`
@@ -62,7 +62,7 @@ const COLLECTIONS = [
     caption: 'Films & Séries • Sélection sur mesure',
     backdropOutput: 'recommandations.backdrop.webp',
     coverOutput: 'recommandations.cover.webp',
-    titleOutput: 'recommandations.title.png',
+    titleOutput: 'recommandations.title.webp',
     sortByPopularity: true,
     movieSource: `${BASE_URL}/catalog/movie/trakt.recommendations.movies.json`,
     serieSource: `${BASE_URL}/catalog/series/trakt.recommendations.shows.json`
@@ -423,6 +423,152 @@ function buildCoverHtml(movieBg, serieBg, title, caption) {
   `;
 }
 
+function buildDashboardHtml(collections) {
+  const cardsHtml = collections.map(col => {
+    let links = '';
+    const baseUrl = 'https://cdn.jsdelivr.net/gh/Wayku-io/nuviowayku@main/dist';
+    
+    if (col.backdropOutput) {
+      links += `<button onclick="copyLink('${baseUrl}/${col.backdropOutput}', this)">🖼️ Backdrop</button>`;
+    }
+    if (col.coverOutput) {
+      links += `<button onclick="copyLink('${baseUrl}/${col.coverOutput}', this)">📱 Cover</button>`;
+    }
+    if (col.titleOutput) {
+      links += `<button onclick="copyLink('${baseUrl}/${col.titleOutput}', this)">🔤 Title</button>`;
+    }
+
+    return `
+      <div class="card">
+        <h2>${col.name}</h2>
+        <div class="buttons">
+          ${links}
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  return `
+  <!DOCTYPE html>
+  <html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Nuvio - Liens JSDelivr</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg: #090a0d;
+        --card-bg: rgba(255, 255, 255, 0.03);
+        --card-border: rgba(255, 255, 255, 0.08);
+        --text: #ffffff;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: 'Inter', sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        padding: 40px 20px;
+        min-height: 100vh;
+        background-image: radial-gradient(circle at top right, rgba(79, 70, 229, 0.15), transparent 40%),
+                          radial-gradient(circle at bottom left, rgba(236, 72, 153, 0.1), transparent 40%);
+      }
+      .header { text-align: center; margin-bottom: 50px; }
+      .header h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+        background: linear-gradient(to right, #a855f7, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .header p { color: rgba(255, 255, 255, 0.6); font-size: 1.1rem; }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .card {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        border-radius: 16px;
+        padding: 24px;
+        backdrop-filter: blur(10px);
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        border-color: rgba(255, 255, 255, 0.15);
+      }
+      .card h2 { font-size: 1.25rem; font-weight: 600; margin-bottom: 20px; color: #e2e8f0; }
+      .buttons { display: flex; flex-direction: column; gap: 10px; }
+      button {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: #fff;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+        transition: all 0.2s;
+        font-family: inherit;
+      }
+      button:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
+      button:active { transform: scale(0.98); }
+      .toast {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: #10b981;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 30px;
+        font-weight: 600;
+        box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        opacity: 0;
+        pointer-events: none;
+      }
+      .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Nuvio Images</h1>
+      <p>Cliquez sur un bouton pour copier le lien CDN (JSDelivr)</p>
+    </div>
+    <div class="grid">${cardsHtml}</div>
+    <div id="toast" class="toast">✅ Lien copié dans le presse-papier !</div>
+    <script>
+      function copyLink(url, btn) {
+        navigator.clipboard.writeText(url).then(() => {
+          const originalText = btn.innerHTML;
+          btn.innerHTML = '✅ Copié !';
+          btn.style.background = 'rgba(16, 185, 129, 0.2)';
+          btn.style.borderColor = '#10b981';
+          setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.style.background = '';
+            btn.style.borderColor = '';
+          }, 1500);
+          const toast = document.getElementById('toast');
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2500);
+        });
+      }
+    </script>
+  </body>
+  </html>
+  `;
+}
+
 function buildTitleHtml(title) {
   return `
   <!DOCTYPE html>
@@ -618,7 +764,7 @@ async function run() {
         });
 
         const titleNode = await page.$('#title-node');
-        const titleBuf = await titleNode.screenshot({ type: 'png', omitBackground: true });
+        const titleBuf = await titleNode.screenshot({ type: 'webp', omitBackground: true, quality: 92 });
         fs.writeFileSync(path.join(distDir, col.titleOutput), titleBuf);
         console.log(`✅ Title    : dist/${col.titleOutput}`);
       }
@@ -629,7 +775,13 @@ async function run() {
   }
 
   await browser.close();
-  console.log('\n🎉 Terminé ! Les 21 visuels (11 backdrops, 5 covers, 5 titles) sont dans /dist.');
+  
+  // Génération du dashboard web
+  const dashboardHtml = buildDashboardHtml(COLLECTIONS);
+  fs.writeFileSync(path.join(distDir, 'index.html'), dashboardHtml);
+  console.log(`✅ Dashboard : dist/index.html`);
+
+  console.log('\n🎉 Terminé ! Les 21 visuels (11 backdrops, 5 covers, 5 titles) et le dashboard sont dans /dist.');
 }
 
 run().catch(err => {

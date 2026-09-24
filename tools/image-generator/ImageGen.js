@@ -437,8 +437,24 @@ function buildBackdropHtml(rows) {
   `;
 }
 
-function buildCoverHtml(bg, title, caption, isFocus = false) {
+function buildCoverCarouselHtml(posters, title, bgImage, isFocus = false) {
   const dividerHtml = isFocus ? '<div class="divider"></div>' : '';
+  
+  // Keep only up to 5 posters
+  const displayPosters = posters.slice(0, 5);
+  while (displayPosters.length < 5 && displayPosters.length > 0) {
+    displayPosters.push(displayPosters[0]); // fallback if fewer than 5
+  }
+
+  // Reorder for CSS layout: nth-child(3) is center
+  const orderedPosters = [
+    displayPosters[3], // left extremity
+    displayPosters[1], // left middle
+    displayPosters[0], // center
+    displayPosters[2], // right middle
+    displayPosters[4]  // right extremity
+  ];
+
   return `
   <!DOCTYPE html>
   <html>
@@ -450,37 +466,81 @@ function buildCoverHtml(bg, title, caption, isFocus = false) {
       body {
         width: 1920px;
         height: 1080px;
-        background: #090a0d;
+        background: #141724;
         overflow: hidden;
         position: relative;
         font-family: 'Montserrat', sans-serif;
       }
 
-      .pane-serie {
+      .bg-img {
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
-        overflow: hidden;
-      }
-      .pane-serie img {
-        width: 100%;
-        height: 100%;
         object-fit: cover;
-        object-position: center;
+        z-index: 0;
       }
+
+      /* Couche de flou et d'assombrissement sur le backdrop */
+      .bg-blur {
+        position: absolute;
+        inset: -100px;
+        background: rgba(10, 11, 16, 0.4);
+        backdrop-filter: blur(60px);
+        -webkit-backdrop-filter: blur(60px);
+        z-index: 1;
+      }
+
+      .carousel {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: 850px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        perspective: 1600px;
+        z-index: 5;
+      }
+      
+      /* Affiches encore plus grandes */
+      .poster {
+        position: absolute;
+        width: 500px;
+        height: 750px;
+        border-radius: 24px;
+        box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+        -webkit-box-reflect: below 15px linear-gradient(transparent 65%, rgba(255,255,255,0.4));
+        background: #1e2233;
+        border: 1px solid rgba(255,255,255,0.1);
+      }
+      
+      .poster img { 
+        width: 100%; 
+        height: 100%; 
+        object-fit: cover; 
+        border-radius: 24px;
+      }
+
+      /* Écartement et taille ajustés */
+      .poster:nth-child(1) { transform: translateX(-760px) translateZ(-400px) rotateY(20deg); z-index: 1; opacity: 0.8; filter: brightness(0.7); }
+      .poster:nth-child(2) { transform: translateX(-400px) translateZ(-180px) rotateY(14deg); z-index: 2; opacity: 0.95; filter: brightness(0.85); }
+      .poster:nth-child(3) { transform: translateX(0) translateZ(100px) scale(1.05); z-index: 3; box-shadow: 0 60px 120px rgba(0,0,0,0.9); border: 2px solid rgba(255,255,255,0.3); }
+      .poster:nth-child(4) { transform: translateX(400px) translateZ(-180px) rotateY(-14deg); z-index: 2; opacity: 0.95; filter: brightness(0.85); }
+      .poster:nth-child(5) { transform: translateX(760px) translateZ(-400px) rotateY(-20deg); z-index: 1; opacity: 0.8; filter: brightness(0.7); }
 
       .overlay {
         position: absolute;
         inset: 0;
         pointer-events: none;
         z-index: 6;
-        background: linear-gradient(to top, rgba(9, 10, 13, 0.95) 0%, rgba(9, 10, 13, 0.7) 12%, transparent 28%);
+        background: linear-gradient(to top, rgba(15, 17, 26, 0.98) 0%, rgba(15, 17, 26, 0.5) 20%, transparent 45%);
       }
 
       .text-container {
         position: absolute;
-        bottom: 80px;
+        bottom: 70px;
         left: 0;
         width: 100%;
         display: flex;
@@ -492,7 +552,7 @@ function buildCoverHtml(bg, title, caption, isFocus = false) {
       }
 
       .main-title {
-        font-size: 95px;
+        font-size: 105px;
         font-weight: 900;
         text-transform: uppercase;
         letter-spacing: 12px;
@@ -501,7 +561,7 @@ function buildCoverHtml(bg, title, caption, isFocus = false) {
         background: linear-gradient(180deg, #ffffff 30%, #b5b7c0 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.95));
+        filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.95));
       }
 
       .divider {
@@ -514,7 +574,11 @@ function buildCoverHtml(bg, title, caption, isFocus = false) {
     </style>
   </head>
   <body>
-    <div class="pane-serie"><img src="${bg}" /></div>
+    <img class="bg-img" src="${bgImage}" />
+    <div class="bg-blur"></div>
+    <div class="carousel">
+      ${orderedPosters.map(url => `<div class="poster"><img src="${url}" /></div>`).join('')}
+    </div>
 
     <div class="overlay"></div>
 
@@ -858,20 +922,11 @@ async function run() {
 
       // --- 2. COVER & FOCUS ---
       if (col.title) {
-        const preferFirst = (col.id === 'prochainement' || col.id === 'mieux_notes');
-        const coverMovie = pickCoverItem(movies, preferFirst);
-        const coverSerie = pickCoverItem(series, preferFirst);
-
-        const movieBg = coverMovie.background || coverMovie.backdrop || coverMovie.poster;
-        const serieBg = coverSerie.background || coverSerie.backdrop || coverSerie.poster;
-
-        let bgToUse = serieBg;
-        if (col.useMovieForCover) {
-          bgToUse = movieBg;
-        }
+        const firstValidItem = movies.find(m => isValidImage(m.background || m.backdrop)) || series.find(s => isValidImage(s.background || s.backdrop)) || movies[0] || {};
+        const bgImage = firstValidItem.background || firstValidItem.backdrop || firstValidItem.poster || '';
 
         if (col.title) {
-          await page.setContent(buildCoverHtml(bgToUse, col.title, col.caption, false), { waitUntil: 'domcontentloaded' });
+          await page.setContent(buildCoverCarouselHtml(mixedPosters, col.title, bgImage, false), { waitUntil: 'domcontentloaded' });
 
           await page.evaluate(async () => {
             const imgs = Array.from(document.querySelectorAll('img'));
@@ -890,7 +945,7 @@ async function run() {
         }
 
         if (col.title) {
-          await page.setContent(buildCoverHtml(bgToUse, col.title, col.caption, true), { waitUntil: 'domcontentloaded' });
+          await page.setContent(buildCoverCarouselHtml(mixedPosters, col.title, bgImage, true), { waitUntil: 'domcontentloaded' });
 
           await page.evaluate(async () => {
             const imgs = Array.from(document.querySelectorAll('img'));

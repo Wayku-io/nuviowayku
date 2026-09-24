@@ -137,7 +137,7 @@ const COLLECTIONS = [
   {
     id: 'genre_action',
     name: 'Action',
-    title: '💥 Action',
+    title: 'Action',
     caption: 'Films & Séries',
     backdropOutput: 'action.backdrop.webp',
     coverOutput: 'action.cover.webp',
@@ -150,7 +150,7 @@ const COLLECTIONS = [
   {
     id: 'genre_comedie',
     name: 'Comédie',
-    title: '🤣 Comédie',
+    title: 'Comédie',
     caption: 'Films & Séries',
     backdropOutput: 'comedie.backdrop.webp',
     coverOutput: 'comedie.cover.webp',
@@ -163,7 +163,7 @@ const COLLECTIONS = [
   {
     id: 'genre_crime',
     name: 'Crime',
-    title: '👮 Crime',
+    title: 'Crime',
     caption: 'Films & Séries',
     backdropOutput: 'crime.backdrop.webp',
     coverOutput: 'crime.cover.webp',
@@ -176,7 +176,7 @@ const COLLECTIONS = [
   {
     id: 'genre_drame',
     name: 'Drame',
-    title: '😢 Drame',
+    title: 'Drame',
     caption: 'Films & Séries',
     backdropOutput: 'drame.backdrop.webp',
     coverOutput: 'drame.cover.webp',
@@ -189,7 +189,7 @@ const COLLECTIONS = [
   {
     id: 'genre_kdrama',
     name: 'K-Drama',
-    title: '㊗️ K-Drama',
+    title: 'K-Drama',
     caption: 'Films & Séries',
     backdropOutput: 'kdrama.backdrop.webp',
     coverOutput: 'kdrama.cover.webp',
@@ -202,7 +202,7 @@ const COLLECTIONS = [
   {
     id: 'genre_fantastique',
     name: 'Fantastique',
-    title: '🐉 Fantastique',
+    title: 'Fantastique',
     caption: 'Films & Séries',
     backdropOutput: 'fantastique.backdrop.webp',
     coverOutput: 'fantastique.cover.webp',
@@ -215,7 +215,7 @@ const COLLECTIONS = [
   {
     id: 'genre_horreur',
     name: 'Horreur',
-    title: '👻 Horreur',
+    title: 'Horreur',
     caption: 'Films & Séries',
     backdropOutput: 'horreur.backdrop.webp',
     coverOutput: 'horreur.cover.webp',
@@ -228,7 +228,7 @@ const COLLECTIONS = [
   {
     id: 'genre_mystere',
     name: 'Mystère',
-    title: '🔎 Mystère',
+    title: 'Mystère',
     caption: 'Films & Séries',
     backdropOutput: 'mystere.backdrop.webp',
     coverOutput: 'mystere.cover.webp',
@@ -241,7 +241,7 @@ const COLLECTIONS = [
   {
     id: 'genre_romance',
     name: 'Romance',
-    title: '🥰 Romance',
+    title: 'Romance',
     caption: 'Films & Séries',
     backdropOutput: 'romance.backdrop.webp',
     coverOutput: 'romance.cover.webp',
@@ -254,7 +254,7 @@ const COLLECTIONS = [
   {
     id: 'genre_thriller',
     name: 'Thriller',
-    title: '🔪 Thriller',
+    title: 'Thriller',
     caption: 'Films & Séries',
     backdropOutput: 'thriller.backdrop.webp',
     coverOutput: 'thriller.cover.webp',

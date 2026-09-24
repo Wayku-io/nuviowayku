@@ -2,6 +2,9 @@ const axios = require('axios');
 const fs = require('fs');
 
 async function purgeCache() {
+  console.log('⏳ Attente de 10 secondes pour que GitHub synchronise ses serveurs...');
+  await new Promise(resolve => setTimeout(resolve, 10000));
+
   console.log('🧹 Purge du cache JSDelivr...');
   const repo = 'Wayku-io/nuviowayku@main';
   

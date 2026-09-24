@@ -14,6 +14,7 @@ const COLLECTIONS = [
     caption: 'Films & Séries • Dernières sorties',
     backdropOutput: 'nouveautes.backdrop.webp',
     coverOutput: 'nouveautes.cover.webp',
+    focusOutput: 'nouveautes.focus.webp',
     titleOutput: 'nouveautes.title.webp',
     sortByPopularity: true,
     movieSource: `${BASE_URL}/catalog/movie/tmdb.discover.movie.sorties_digitales_copy.mpzretj9.json`,
@@ -26,6 +27,7 @@ const COLLECTIONS = [
     caption: 'Films & Séries • Tendances du moment',
     backdropOutput: 'populaires.backdrop.webp',
     coverOutput: 'populaires.cover.webp',
+    focusOutput: 'populaires.focus.webp',
     titleOutput: 'populaires.title.webp',
     sortByPopularity: false,
     movieSource: `${BASE_URL}/catalog/movie/trakt.trending.movies.json`,
@@ -38,6 +40,7 @@ const COLLECTIONS = [
     caption: 'Films & Séries • Les plus attendus',
     backdropOutput: 'prochainement.backdrop.webp',
     coverOutput: 'prochainement.cover.webp',
+    focusOutput: 'prochainement.focus.webp',
     titleOutput: 'prochainement.title.webp',
     sortByPopularity: false,
     movieSource: `${BASE_URL}/catalog/movie/trakt.anticipated.movies.json`,
@@ -50,6 +53,7 @@ const COLLECTIONS = [
     caption: 'Films & Séries • La crème de la crème',
     backdropOutput: 'mieux_notes.backdrop.webp',
     coverOutput: 'mieux_notes.cover.webp',
+    focusOutput: 'mieux_notes.focus.webp',
     titleOutput: 'mieux_notes.title.webp',
     sortByPopularity: false,
     movieSource: `${BASE_URL}/catalog/movie/mdblist.101881.json`,
@@ -62,6 +66,7 @@ const COLLECTIONS = [
     caption: 'Films & Séries • Sélection sur mesure',
     backdropOutput: 'recommandations.backdrop.webp',
     coverOutput: 'recommandations.cover.webp',
+    focusOutput: 'recommandations.focus.webp',
     titleOutput: 'recommandations.title.webp',
     sortByPopularity: true,
     movieSource: `${BASE_URL}/catalog/movie/trakt.recommendations.movies.json`,
@@ -136,14 +141,12 @@ function isValidImage(url) {
   const lower = url.toLowerCase();
   return !(
     lower.includes('placeholder') || 
-    lower.includes('default') || 
     lower.includes('no_poster') || 
     lower.includes('noposter') ||
     lower.includes('metahub.space') ||
     lower.includes('images.metahub.space') ||
     lower.includes('strem.io') ||
     lower.includes('stremio') ||
-    lower.includes('fallback') ||
     lower.includes('coming-soon') ||
     lower.includes('unknown') ||
     lower.endsWith('.svg') ||
@@ -269,7 +272,8 @@ function buildBackdropHtml(rows) {
   `;
 }
 
-function buildCoverHtml(movieBg, serieBg, title, caption) {
+function buildCoverHtml(movieBg, serieBg, title, caption, isFocus = false) {
+  const dividerHtml = isFocus ? '<div class="divider"></div>' : '';
   return `
   <!DOCTYPE html>
   <html>
@@ -287,57 +291,18 @@ function buildCoverHtml(movieBg, serieBg, title, caption) {
         font-family: 'Montserrat', sans-serif;
       }
 
-      .pane-movie {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 960px;
-        height: 1080px;
-        clip-path: polygon(0 0, calc(100% + 115px) 0, calc(100% - 115px) 100%, 0 100%);
-        overflow: hidden;
-      }
-      .pane-movie img {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: auto;
-        height: 70%;
-        min-width: 100%;
-        object-fit: cover;
-        object-position: top center;
-      }
-
       .pane-serie {
         position: absolute;
-        top: 0;
-        left: 960px;
-        width: 960px;
-        height: 1080px;
-        clip-path: polygon(115px 0, 100% 0, 100% 100%, -115px 100%);
+        inset: 0;
+        width: 100%;
+        height: 100%;
         overflow: hidden;
       }
       .pane-serie img {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: auto;
-        height: 70%;
-        min-width: 100%;
-        object-fit: cover;
-        object-position: top center;
-      }
-
-      .seam-line {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        z-index: 5;
-      }
-      .seam-line svg {
         width: 100%;
         height: 100%;
+        object-fit: cover;
+        object-position: center;
       }
 
       .overlay {
@@ -345,7 +310,7 @@ function buildCoverHtml(movieBg, serieBg, title, caption) {
         inset: 0;
         pointer-events: none;
         z-index: 6;
-        background: linear-gradient(to top, #090a0d 0%, #090a0d 30.5%, rgba(9, 10, 13, 0.85) 36%, rgba(9, 10, 13, 0.4) 42%, transparent 48%);
+        background: linear-gradient(to top, rgba(9, 10, 13, 0.95) 0%, rgba(9, 10, 13, 0.7) 12%, transparent 28%);
       }
 
       .text-container {
@@ -384,39 +349,13 @@ function buildCoverHtml(movieBg, serieBg, title, caption) {
     </style>
   </head>
   <body>
-    <div class="pane-movie"><img src="${movieBg}" /></div>
     <div class="pane-serie"><img src="${serieBg}" /></div>
-
-    <div class="seam-line">
-      <svg viewBox="0 0 1920 1080" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="lineGlow" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="rgba(255,255,255,0.2)" />
-            <stop offset="30%" stop-color="rgba(255,255,255,0.9)" />
-            <stop offset="50%" stop-color="#ffffff" />
-            <stop offset="70%" stop-color="rgba(255,255,255,0.9)" />
-            <stop offset="100%" stop-color="rgba(255,255,255,0.2)" />
-          </linearGradient>
-          <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-            <feGaussianBlur stdDeviation="6" result="blur1"/>
-            <feGaussianBlur stdDeviation="15" result="blur2"/>
-            <feMerge>
-              <feMergeNode in="blur2"/>
-              <feMergeNode in="blur1"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-        </defs>
-        <line x1="1075" y1="0" x2="845" y2="1080" stroke="#000000" stroke-width="18" opacity="0.9" />
-        <line x1="1075" y1="0" x2="845" y2="1080" stroke="url(#lineGlow)" stroke-width="6" filter="url(#glow)" />
-      </svg>
-    </div>
 
     <div class="overlay"></div>
 
     <div class="text-container">
       <h1 class="main-title">${title}</h1>
-      <div class="divider"></div>
+      ${dividerHtml}
     </div>
   </body>
   </html>
@@ -433,6 +372,9 @@ function buildDashboardHtml(collections) {
     }
     if (col.coverOutput) {
       links += `<button onclick="copyLink('${baseUrl}/${col.coverOutput}', this)">📱 Cover</button>`;
+    }
+    if (col.focusOutput) {
+      links += `<button onclick="copyLink('${baseUrl}/${col.focusOutput}', this)">🎯 Focus</button>`;
     }
     if (col.titleOutput) {
       links += `<button onclick="copyLink('${baseUrl}/${col.titleOutput}', this)">🔤 Title</button>`;
@@ -725,8 +667,8 @@ async function run() {
       fs.writeFileSync(path.join(distDir, col.backdropOutput), backdropBuf);
       console.log(`✅ Backdrop : dist/${col.backdropOutput}`);
 
-      // --- 2. COVER (Uniquement si coverOutput est défini) ---
-      if (col.coverOutput) {
+      // --- 2. COVER & FOCUS ---
+      if (col.coverOutput || col.focusOutput) {
         const preferFirst = (col.id === 'prochainement' || col.id === 'mieux_notes');
         const coverMovie = pickCoverItem(movies, preferFirst);
         const coverSerie = pickCoverItem(series, preferFirst);
@@ -734,25 +676,43 @@ async function run() {
         const movieBg = coverMovie.background || coverMovie.backdrop || coverMovie.poster;
         const serieBg = coverSerie.background || coverSerie.backdrop || coverSerie.poster;
 
-        await page.setContent(buildCoverHtml(movieBg, serieBg, col.title, col.caption), { waitUntil: 'domcontentloaded' });
+        if (col.coverOutput) {
+          await page.setContent(buildCoverHtml(movieBg, serieBg, col.title, col.caption, false), { waitUntil: 'domcontentloaded' });
 
-        await page.evaluate(async () => {
-          const imgs = Array.from(document.querySelectorAll('img'));
-          await Promise.race([
-            Promise.all(imgs.map(img => {
-              if (img.complete) return;
-              return new Promise(resolve => {
-                img.onload = resolve;
-                img.onerror = resolve;
-              });
-            })),
-            new Promise(resolve => setTimeout(resolve, 5000))
-          ]);
-        });
+          await page.evaluate(async () => {
+            const imgs = Array.from(document.querySelectorAll('img'));
+            await Promise.race([
+              Promise.all(imgs.map(img => {
+                if (img.complete) return;
+                return new Promise(resolve => { img.onload = resolve; img.onerror = resolve; });
+              })),
+              new Promise(resolve => setTimeout(resolve, 5000))
+            ]);
+          });
 
-        const coverBuf = await page.screenshot({ type: 'webp', quality: 92 });
-        fs.writeFileSync(path.join(distDir, col.coverOutput), coverBuf);
-        console.log(`✅ Cover    : dist/${col.coverOutput}`);
+          const coverBuf = await page.screenshot({ type: 'webp', quality: 92 });
+          fs.writeFileSync(path.join(distDir, col.coverOutput), coverBuf);
+          console.log(`✅ Cover    : dist/${col.coverOutput}`);
+        }
+
+        if (col.focusOutput) {
+          await page.setContent(buildCoverHtml(movieBg, serieBg, col.title, col.caption, true), { waitUntil: 'domcontentloaded' });
+
+          await page.evaluate(async () => {
+            const imgs = Array.from(document.querySelectorAll('img'));
+            await Promise.race([
+              Promise.all(imgs.map(img => {
+                if (img.complete) return;
+                return new Promise(resolve => { img.onload = resolve; img.onerror = resolve; });
+              })),
+              new Promise(resolve => setTimeout(resolve, 5000))
+            ]);
+          });
+
+          const focusBuf = await page.screenshot({ type: 'webp', quality: 92 });
+          fs.writeFileSync(path.join(distDir, col.focusOutput), focusBuf);
+          console.log(`✅ Focus    : dist/${col.focusOutput}`);
+        }
       }
 
       // --- 3. TITLE (Uniquement si titleOutput est défini) ---
@@ -781,7 +741,7 @@ async function run() {
   fs.writeFileSync(path.join(distDir, 'index.html'), dashboardHtml);
   console.log(`✅ Dashboard : dist/index.html`);
 
-  console.log('\n🎉 Terminé ! Les 21 visuels (11 backdrops, 5 covers, 5 titles) et le dashboard sont dans /dist.');
+  console.log('\n🎉 Terminé ! Les visuels et le dashboard sont dans /dist.');
 }
 
 run().catch(err => {

@@ -133,6 +133,136 @@ const COLLECTIONS = [
     serieSource: `${BASE_URL}/catalog/series/flixpatrol.paramount.fr.series.json`,
     backupMovieSource: `${BASE_URL}/catalog/movie/tmdb.discover.movie.les_mieux_not_s_sur_netflix_copy.mpbhw7os.json`,
     backupSerieSource: `${BASE_URL}/catalog/series/tmdb.discover.series.les_mieux_not_es_sur_netflix_copy.mpbhw9k1.json`
+  },
+  {
+    id: 'genre_action',
+    name: 'Action',
+    title: '💥 Action',
+    caption: 'Films & Séries',
+    backdropOutput: 'action.backdrop.webp',
+    coverOutput: 'action.cover.webp',
+    focusOutput: 'action.focus.webp',
+    titleOutput: 'action.title.webp',
+    movieSource: `${BASE_URL}/catalog/movie/tmdb.discover.movie.action.mpegynci.json`,
+    serieSource: `${BASE_URL}/catalog/series/tmdb.discover.movie.action_copy.mpegysup.json`,
+    useMovieForCover: true
+  },
+  {
+    id: 'genre_comedie',
+    name: 'Comédie',
+    title: '🤣 Comédie',
+    caption: 'Films & Séries',
+    backdropOutput: 'comedie.backdrop.webp',
+    coverOutput: 'comedie.cover.webp',
+    focusOutput: 'comedie.focus.webp',
+    titleOutput: 'comedie.title.webp',
+    movieSource: `${BASE_URL}/catalog/movie/tmdb.discover.movie.action_copy.mpegzpmg.json`,
+    serieSource: `${BASE_URL}/catalog/series/tmdb.discover.movie.action_copy_copy.mpeh11x6.json`,
+    useMovieForCover: true
+  },
+  {
+    id: 'genre_crime',
+    name: 'Crime',
+    title: '👮 Crime',
+    caption: 'Films & Séries',
+    backdropOutput: 'crime.backdrop.webp',
+    coverOutput: 'crime.cover.webp',
+    focusOutput: 'crime.focus.webp',
+    titleOutput: 'crime.title.webp',
+    movieSource: `${BASE_URL}/catalog/movie/tmdb.discover.movie.action_copy.mpeh1bp5.json`,
+    serieSource: `${BASE_URL}/catalog/series/tmdb.discover.movie.action_copy_copy.mpeh22b2.json`,
+    useMovieForCover: true
+  },
+  {
+    id: 'genre_drame',
+    name: 'Drame',
+    title: '😢 Drame',
+    caption: 'Films & Séries',
+    backdropOutput: 'drame.backdrop.webp',
+    coverOutput: 'drame.cover.webp',
+    focusOutput: 'drame.focus.webp',
+    titleOutput: 'drame.title.webp',
+    movieSource: `${BASE_URL}/catalog/movie/tmdb.discover.movie.crime_copy.mpeh30bz.json`,
+    serieSource: `${BASE_URL}/catalog/series/tmdb.discover.movie.crime_copy_copy.mpeh3bsj.json`,
+    useMovieForCover: true
+  },
+  {
+    id: 'genre_kdrama',
+    name: 'K-Drama',
+    title: '㊗️ K-Drama',
+    caption: 'Films & Séries',
+    backdropOutput: 'kdrama.backdrop.webp',
+    coverOutput: 'kdrama.cover.webp',
+    focusOutput: 'kdrama.focus.webp',
+    titleOutput: 'kdrama.title.webp',
+    movieSource: `${BASE_URL}/catalog/movie/mdblist.130778.json`,
+    serieSource: `${BASE_URL}/catalog/series/mdblist.130775.json`,
+    useMovieForCover: true
+  },
+  {
+    id: 'genre_fantastique',
+    name: 'Fantastique',
+    title: '🐉 Fantastique',
+    caption: 'Films & Séries',
+    backdropOutput: 'fantastique.backdrop.webp',
+    coverOutput: 'fantastique.cover.webp',
+    focusOutput: 'fantastique.focus.webp',
+    titleOutput: 'fantastique.title.webp',
+    movieSource: `${BASE_URL}/catalog/movie/tmdb.discover.movie.drame_copy.mpeh3wlv.json`,
+    serieSource: `${BASE_URL}/catalog/series/tmdb.discover.movie.drame_copy_copy.mpeh4679.json`,
+    useMovieForCover: true
+  },
+  {
+    id: 'genre_horreur',
+    name: 'Horreur',
+    title: '👻 Horreur',
+    caption: 'Films & Séries',
+    backdropOutput: 'horreur.backdrop.webp',
+    coverOutput: 'horreur.cover.webp',
+    focusOutput: 'horreur.focus.webp',
+    titleOutput: 'horreur.title.webp',
+    movieSource: `${BASE_URL}/catalog/movie/tmdb.discover.movie.fantastique_copy.mpeh5vcp.json`,
+    serieSource: `${BASE_URL}/catalog/series/tmdb.discover.movie.fantastique_copy_copy.mpeh6hdm.json`,
+    useMovieForCover: true
+  },
+  {
+    id: 'genre_mystere',
+    name: 'Mystère',
+    title: '🔎 Mystère',
+    caption: 'Films & Séries',
+    backdropOutput: 'mystere.backdrop.webp',
+    coverOutput: 'mystere.cover.webp',
+    focusOutput: 'mystere.focus.webp',
+    titleOutput: 'mystere.title.webp',
+    movieSource: `${BASE_URL}/catalog/movie/tmdb.discover.movie.horreur_copy.mpeh907o.json`,
+    serieSource: `${BASE_URL}/catalog/series/tmdb.discover.movie.horreur_copy_copy.mpeh9aoq.json`,
+    useMovieForCover: true
+  },
+  {
+    id: 'genre_romance',
+    name: 'Romance',
+    title: '🥰 Romance',
+    caption: 'Films & Séries',
+    backdropOutput: 'romance.backdrop.webp',
+    coverOutput: 'romance.cover.webp',
+    focusOutput: 'romance.focus.webp',
+    titleOutput: 'romance.title.webp',
+    movieSource: `${BASE_URL}/catalog/movie/tmdb.discover.movie.myst_re_copy.mpeha185.json`,
+    serieSource: `${BASE_URL}/catalog/series/tmdb.discover.movie.myst_re_copy_copy.mpehafc4.json`,
+    useMovieForCover: true
+  },
+  {
+    id: 'genre_thriller',
+    name: 'Thriller',
+    title: '🔪 Thriller',
+    caption: 'Films & Séries',
+    backdropOutput: 'thriller.backdrop.webp',
+    coverOutput: 'thriller.cover.webp',
+    focusOutput: 'thriller.focus.webp',
+    titleOutput: 'thriller.title.webp',
+    movieSource: `${BASE_URL}/catalog/movie/tmdb.discover.movie.romance_copy.mpehcdq4.json`,
+    serieSource: `${BASE_URL}/catalog/series/tmdb.discover.movie.romance_copy_copy.mpehcoz1.json`,
+    useMovieForCover: true
   }
 ];
 
@@ -272,7 +402,7 @@ function buildBackdropHtml(rows) {
   `;
 }
 
-function buildCoverHtml(movieBg, serieBg, title, caption, isFocus = false) {
+function buildCoverHtml(bg, title, caption, isFocus = false) {
   const dividerHtml = isFocus ? '<div class="divider"></div>' : '';
   return `
   <!DOCTYPE html>
@@ -349,7 +479,7 @@ function buildCoverHtml(movieBg, serieBg, title, caption, isFocus = false) {
     </style>
   </head>
   <body>
-    <div class="pane-serie"><img src="${serieBg}" /></div>
+    <div class="pane-serie"><img src="${bg}" /></div>
 
     <div class="overlay"></div>
 
@@ -676,8 +806,13 @@ async function run() {
         const movieBg = coverMovie.background || coverMovie.backdrop || coverMovie.poster;
         const serieBg = coverSerie.background || coverSerie.backdrop || coverSerie.poster;
 
+        let bgToUse = serieBg;
+        if (col.useMovieForCover) {
+          bgToUse = movieBg;
+        }
+
         if (col.coverOutput) {
-          await page.setContent(buildCoverHtml(movieBg, serieBg, col.title, col.caption, false), { waitUntil: 'domcontentloaded' });
+          await page.setContent(buildCoverHtml(bgToUse, col.title, col.caption, false), { waitUntil: 'domcontentloaded' });
 
           await page.evaluate(async () => {
             const imgs = Array.from(document.querySelectorAll('img'));
@@ -696,7 +831,7 @@ async function run() {
         }
 
         if (col.focusOutput) {
-          await page.setContent(buildCoverHtml(movieBg, serieBg, col.title, col.caption, true), { waitUntil: 'domcontentloaded' });
+          await page.setContent(buildCoverHtml(bgToUse, col.title, col.caption, true), { waitUntil: 'domcontentloaded' });
 
           await page.evaluate(async () => {
             const imgs = Array.from(document.querySelectorAll('img'));

@@ -1,0 +1,25 @@
+{
+  "metas": [
+    {
+      "id": "tmdb:259316",
+      "type": "movie",
+      "name": "Les Animaux Fantastiques",
+      "poster": "https://image.tmdb.org/t/p/w200/7641iyvTdREC0eO2YUPmIk4PtrO.jpg",
+      "year": "2016"
+    },
+    {
+      "id": "tmdb:338952",
+      "type": "movie",
+      "name": "Les Animaux Fantastiques : Les Crimes de Grindelwald",
+      "poster": "https://image.tmdb.org/t/p/w200/aU1AKE8tTkZouGNImmArvfP5smR.jpg",
+      "year": "2018"
+    },
+    {
+      "id": "tmdb:338953",
+      "type": "movie",
+      "name": "Les Animaux fantastiques : Les Secrets de Dumbledore",
+      "poster": "https://image.tmdb.org/t/p/w200/gzvSMS4MqBg2ThgGOS2YkNkoebf.jpg",
+      "year": "2022"
+    }
+  ]
+}

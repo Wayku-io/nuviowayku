@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalog Generator</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <!-- SortableJS for drag & drop -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <header class="header">
+      <div class="logo">
+        <h1>Catalog<span>Gen</span></h1>
+      </div>
+      <button id="settings-btn" class="icon-btn" title="Paramètres">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+      </button>
+    </header>
+
+    <main class="main-content">
+      
+      <!-- Colonne de recherche -->
+      <section class="search-section panel">
+        <h2>Rechercher (TMDB)</h2>
+        <div class="search-box">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="search-input" placeholder="Ex: Harry Potter, Breaking Bad...">
+        </div>
+        
+        <div class="type-toggle">
+          <label class="toggle-option">
+            <input type="radio" name="search-type" value="movie" checked>
+            <span>Film</span>
+          </label>
+          <label class="toggle-option">
+            <input type="radio" name="search-type" value="tv">
+            <span>Série</span>
+          </label>
+        </div>
+
+        <div id="search-results" class="results-grid">
+          <!-- Les résultats TMDB apparaitront ici -->
+        </div>
+      </section>
+
+      <!-- Colonne de la liste -->
+      <section class="list-section panel">
+        <div class="list-header">
+          <h2>Ma Collection</h2>
+          <span class="badge" id="item-count">0 élément</span>
+        </div>
+        
+        <div class="list-meta" style="display: flex; gap: 1rem;">
+          <input type="text" id="catalog-name" placeholder="Nom du catalogue (ex: Collection Harry Potter)" class="glass-input" style="flex: 2;">
+          <select id="sort-select" class="glass-input" style="flex: 1; cursor: pointer;">
+            <option value="manual">Tri Manuel (Glisser-déposer)</option>
+            <option value="year-asc">Année (Ancien -> Récent)</option>
+            <option value="year-desc">Année (Récent -> Ancien)</option>
+            <option value="alpha-asc">Ordre Alphabétique (A-Z)</option>
+          </select>
+          <button id="load-btn" class="icon-btn" title="Ouvrir une collection" style="flex: 0 0 44px; margin-top: 0; background: var(--glass-bg);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          </button>
+        </div>
+
+        <div id="selected-list" class="selected-list">
+          <!-- Les items sélectionnés apparaitront ici -->
+          <div class="empty-state-list" id="empty-list-msg">
+            Glissez-déposez ou cliquez sur les résultats pour les ajouter ici. <br> Vous pourrez ensuite les réorganiser.
+          </div>
+        </div>
+
+        <div class="action-bar">
+          <button id="clear-btn" class="btn btn-secondary">Vider</button>
+          <button id="generate-btn" class="btn btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Générer & Obtenir le lien
+          </button>
+        </div>
+        <div id="result-container" class="hidden" style="margin-top: 1rem; padding: 1.5rem; background: var(--glass-bg); border-radius: 12px; border: 1px solid var(--accent);">
+          <p style="font-size: 0.95rem; margin-bottom: 0.75rem; font-weight: 600;">URL du Manifeste (à coller dans AIO Metadata) :</p>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="text" id="result-url" class="glass-input" readonly style="flex: 1; border-color: var(--accent); color: var(--accent);">
+            <button id="copy-url-btn" class="btn btn-primary" style="flex: 0 0 auto;">Copier</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Modal Paramètres -->
+  <div id="settings-modal" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Paramètres TMDB</h2>
+        <button id="close-settings" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Pour rechercher des films, vous avez besoin d'une clé API TMDB.</p>
+        <div class="input-group">
+          <label for="tmdb-key">TMDB API Key (v3)</label>
+          <input type="password" id="tmdb-key" placeholder="Votre clé API TMDB..." class="glass-input">
+        </div>
+        <br>
+        <div class="input-group">
+          <label for="github-token">GitHub Personal Access Token (Classic ou Fine-grained)</label>
+          <input type="password" id="github-token" placeholder="ghp_..." class="glass-input">
+          <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem; line-height: 1.4;">Requis pour générer automatiquement l'URL finale via votre repository GitHub <code>Wayku-io/nuviowayku</code>.</small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="save-settings" class="btn btn-primary">Enregistrer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Load -->
+  <div id="load-modal" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Mes Collections</h2>
+        <button id="close-load" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div id="load-list" style="display: flex; flex-direction: column; gap: 0.5rem; max-height: 300px; overflow-y: auto; padding-right: 5px;">
+          <!-- Collections list injected here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

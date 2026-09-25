@@ -895,24 +895,36 @@ async function run() {
       // Remplacement direct de tout visuel invalide ou ratio incorrect
       await page.evaluate(async (fallbackList) => {
         const imgs = Array.from(document.querySelectorAll('img'));
+        
+        const waitImages = (images) => Promise.all(images.map(img => {
+          if (img.complete) return Promise.resolve();
+          return new Promise(resolve => {
+            img.onload = resolve;
+            img.onerror = resolve;
+          });
+        }));
+
         await Promise.race([
-          Promise.all(imgs.map(img => {
-            if (img.complete) return;
-            return new Promise(resolve => {
-              img.onload = resolve;
-              img.onerror = resolve;
-            });
-          })),
-          new Promise(resolve => setTimeout(resolve, 6000))
+          waitImages(imgs),
+          new Promise(resolve => setTimeout(resolve, 25000))
         ]);
 
         let fb = 0;
+        let replaced = [];
         for (const img of imgs) {
           const ratio = img.naturalHeight / (img.naturalWidth || 1);
-          if (img.naturalWidth < 250 || ratio < 1.3 || ratio > 1.7) {
+          if (!img.complete || img.naturalWidth < 250 || ratio < 1.3 || ratio > 1.7) {
             img.src = fallbackList[fb % fallbackList.length];
+            replaced.push(img);
             fb++;
           }
+        }
+        
+        if (replaced.length > 0) {
+          await Promise.race([
+            waitImages(replaced),
+            new Promise(resolve => setTimeout(resolve, 10000))
+          ]);
         }
       }, mixedPosters.slice(0, 15));
 
@@ -935,7 +947,7 @@ async function run() {
                 if (img.complete) return;
                 return new Promise(resolve => { img.onload = resolve; img.onerror = resolve; });
               })),
-              new Promise(resolve => setTimeout(resolve, 5000))
+              new Promise(resolve => setTimeout(resolve, 25000))
             ]);
           });
 
@@ -954,7 +966,7 @@ async function run() {
                 if (img.complete) return;
                 return new Promise(resolve => { img.onload = resolve; img.onerror = resolve; });
               })),
-              new Promise(resolve => setTimeout(resolve, 5000))
+              new Promise(resolve => setTimeout(resolve, 25000))
             ]);
           });
 

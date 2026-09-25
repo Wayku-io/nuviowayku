@@ -1,0 +1,19 @@
+{
+  "id": "org.custom.catalog.custom.game_of_thrones",
+  "version": "1.0.0",
+  "name": "Game of Thrones",
+  "description": "Custom catalog generated via CatalogGen",
+  "resources": [
+    "catalog"
+  ],
+  "types": [
+    "series"
+  ],
+  "catalogs": [
+    {
+      "type": "series",
+      "id": "custom.game_of_thrones",
+      "name": "Game of Thrones"
+    }
+  ]
+}

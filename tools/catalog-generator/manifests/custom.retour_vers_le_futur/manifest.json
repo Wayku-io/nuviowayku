@@ -1,0 +1,19 @@
+{
+  "id": "org.custom.catalog.custom.retour_vers_le_futur",
+  "version": "1.0.0",
+  "name": "Retour vers le futur",
+  "description": "Custom catalog generated via CatalogGen",
+  "resources": [
+    "catalog"
+  ],
+  "types": [
+    "movie"
+  ],
+  "catalogs": [
+    {
+      "type": "movie",
+      "id": "custom.retour_vers_le_futur",
+      "name": "Retour vers le futur"
+    }
+  ]
+}

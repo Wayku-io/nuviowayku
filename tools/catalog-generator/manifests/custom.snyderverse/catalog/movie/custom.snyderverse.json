@@ -1,0 +1,67 @@
+{
+  "metas": [
+    {
+      "id": "tmdb:49521",
+      "type": "movie",
+      "name": "Man of Steel",
+      "poster": "https://image.tmdb.org/t/p/w200/3HGq0BI0ukKr53oPiTAgOXQprzc.jpg",
+      "year": "2013"
+    },
+    {
+      "id": "tmdb:209112",
+      "type": "movie",
+      "name": "Batman v Superman : L'Aube de la Justice",
+      "poster": "https://image.tmdb.org/t/p/w200/krEWtXK2K7dg5RyMlx9f5WnI1xd.jpg",
+      "year": "2016"
+    },
+    {
+      "id": "tmdb:791373",
+      "type": "movie",
+      "name": "Zack Snyder's Justice League",
+      "poster": "https://image.tmdb.org/t/p/w200/4EOp3YUSQgzOwVOKrejfKK27bK6.jpg",
+      "year": "2021"
+    },
+    {
+      "id": "tmdb:464052",
+      "type": "movie",
+      "name": "Wonder Woman 1984",
+      "poster": "https://image.tmdb.org/t/p/w200/kdEorjrPno4Cn7HYVN2DA0f3ocr.jpg",
+      "year": "2020"
+    },
+    {
+      "id": "tmdb:297762",
+      "type": "movie",
+      "name": "Wonder Woman",
+      "poster": "https://image.tmdb.org/t/p/w200/oomdTdke7dqffdDoDV1fFBV4fJY.jpg",
+      "year": "2017"
+    },
+    {
+      "id": "tmdb:298618",
+      "type": "movie",
+      "name": "The Flash",
+      "poster": "https://image.tmdb.org/t/p/w200/azio74W2qw7bNg7ePqzkWywwK1n.jpg",
+      "year": "2023"
+    },
+    {
+      "id": "tmdb:297802",
+      "type": "movie",
+      "name": "Aquaman",
+      "poster": "https://image.tmdb.org/t/p/w200/ghbBIweVDjTyx983GQmnCPGlE3U.jpg",
+      "year": "2018"
+    },
+    {
+      "id": "tmdb:645488",
+      "type": "movie",
+      "name": "Aquaman: Heroines of Atlantis",
+      "poster": "https://image.tmdb.org/t/p/w200/pa7m8nqDrEi7hAGB5vTnCkGLPC2.jpg",
+      "year": "2019"
+    },
+    {
+      "id": "tmdb:572802",
+      "type": "movie",
+      "name": "Aquaman et le Royaume perdu",
+      "poster": "https://image.tmdb.org/t/p/w200/w8r7NAEIGLPH5r3NhiMobEO80PS.jpg",
+      "year": "2023"
+    }
+  ]
+}

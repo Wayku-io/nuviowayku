@@ -23,49 +23,57 @@
       "id": "tmdb:671",
       "type": "movie",
       "name": "Harry Potter à l'école des sorciers",
-      "poster": "https://image.tmdb.org/t/p/w200/fbxQ44VRdM2PVzHSNajUseUteem.jpg"
+      "poster": "https://image.tmdb.org/t/p/w200/fbxQ44VRdM2PVzHSNajUseUteem.jpg",
+      "year": "N/A"
     },
     {
       "id": "tmdb:672",
       "type": "movie",
       "name": "Harry Potter et la Chambre des secrets",
-      "poster": "https://image.tmdb.org/t/p/w200/8KpHRokGpiaqEGpjYe0rpywtvUx.jpg"
+      "poster": "https://image.tmdb.org/t/p/w200/8KpHRokGpiaqEGpjYe0rpywtvUx.jpg",
+      "year": "N/A"
     },
     {
       "id": "tmdb:673",
       "type": "movie",
       "name": "Harry Potter et le Prisonnier d'Azkaban",
-      "poster": "https://image.tmdb.org/t/p/w200/t4P2079IyK19njHDP2GwQrKdvzd.jpg"
+      "poster": "https://image.tmdb.org/t/p/w200/t4P2079IyK19njHDP2GwQrKdvzd.jpg",
+      "year": "N/A"
     },
     {
       "id": "tmdb:674",
       "type": "movie",
       "name": "Harry Potter et la Coupe de feu",
-      "poster": "https://image.tmdb.org/t/p/w200/hBak1pn5pbI4ycAbrgMMn1YI7P1.jpg"
+      "poster": "https://image.tmdb.org/t/p/w200/hBak1pn5pbI4ycAbrgMMn1YI7P1.jpg",
+      "year": "N/A"
     },
     {
       "id": "tmdb:675",
       "type": "movie",
       "name": "Harry Potter et l'Ordre du Phénix",
-      "poster": "https://image.tmdb.org/t/p/w200/9ZfpCVNx0y8jpColnnfdA1HI4Zb.jpg"
+      "poster": "https://image.tmdb.org/t/p/w200/9ZfpCVNx0y8jpColnnfdA1HI4Zb.jpg",
+      "year": "N/A"
     },
     {
       "id": "tmdb:767",
       "type": "movie",
       "name": "Harry Potter et le Prince de sang-mêlé",
-      "poster": "https://image.tmdb.org/t/p/w200/A4WWOzWUASfUeESXxduQxVmoD7t.jpg"
-    },
-    {
-      "id": "tmdb:12444",
-      "type": "movie",
-      "name": "Harry Potter et les Reliques de la Mort - 1ère partie",
-      "poster": "https://image.tmdb.org/t/p/w200/yJm61MmTMjOmNXxPxdoaIkdqnOm.jpg"
+      "poster": "https://image.tmdb.org/t/p/w200/A4WWOzWUASfUeESXxduQxVmoD7t.jpg",
+      "year": "N/A"
     },
     {
       "id": "tmdb:12445",
       "type": "movie",
       "name": "Harry Potter et les Reliques de la Mort - 2ème partie",
-      "poster": "https://image.tmdb.org/t/p/w200/alQOPmKEPHkH4BLMEla1vTNYrUr.jpg"
+      "poster": "https://image.tmdb.org/t/p/w200/alQOPmKEPHkH4BLMEla1vTNYrUr.jpg",
+      "year": "N/A"
+    },
+    {
+      "id": "tmdb:12444",
+      "type": "movie",
+      "name": "Harry Potter et les Reliques de la Mort - 1ère partie",
+      "poster": "https://image.tmdb.org/t/p/w200/yJm61MmTMjOmNXxPxdoaIkdqnOm.jpg",
+      "year": "N/A"
     }
   ]
 }

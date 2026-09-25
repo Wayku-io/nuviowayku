@@ -1,0 +1,19 @@
+{
+  "id": "org.custom.catalog.custom.hunger_games",
+  "version": "1.0.0",
+  "name": "Hunger Games",
+  "description": "Custom catalog generated via CatalogGen",
+  "resources": [
+    "catalog"
+  ],
+  "types": [
+    "movie"
+  ],
+  "catalogs": [
+    {
+      "type": "movie",
+      "id": "custom.hunger_games",
+      "name": "Hunger Games"
+    }
+  ]
+}

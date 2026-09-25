@@ -1,0 +1,19 @@
+{
+  "id": "org.custom.catalog.custom.breaking_bad",
+  "version": "1.0.0",
+  "name": "Breaking Bad",
+  "description": "Custom catalog generated via CatalogGen",
+  "resources": [
+    "catalog"
+  ],
+  "types": [
+    "series"
+  ],
+  "catalogs": [
+    {
+      "type": "series",
+      "id": "custom.breaking_bad",
+      "name": "Breaking Bad"
+    }
+  ]
+}

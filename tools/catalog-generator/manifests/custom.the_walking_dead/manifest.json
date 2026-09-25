@@ -1,0 +1,19 @@
+{
+  "id": "org.custom.catalog.custom.the_walking_dead",
+  "version": "1.0.0",
+  "name": "The Walking Dead",
+  "description": "Custom catalog generated via CatalogGen",
+  "resources": [
+    "catalog"
+  ],
+  "types": [
+    "series"
+  ],
+  "catalogs": [
+    {
+      "type": "series",
+      "id": "custom.the_walking_dead",
+      "name": "The Walking Dead"
+    }
+  ]
+}

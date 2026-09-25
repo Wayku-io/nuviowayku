@@ -1,0 +1,18 @@
+{
+  "metas": [
+    {
+      "id": "tmdb:1396",
+      "type": "series",
+      "name": "Breaking Bad",
+      "poster": "https://image.tmdb.org/t/p/w200/hVVxgGZFR3JaXmkstnG1IR9Qbt6.jpg",
+      "year": "2008"
+    },
+    {
+      "id": "tmdb:60059",
+      "type": "series",
+      "name": "Better Call Saul",
+      "poster": "https://image.tmdb.org/t/p/w200/7KyuCBjxsr4sNQga16DcN9ccEyf.jpg",
+      "year": "2015"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "org.custom.catalog.custom.harry_potter_hbo",
+  "version": "1.0.0",
+  "name": "Harry Potter HBO",
+  "description": "Custom catalog generated via CatalogGen",
+  "resources": [
+    "catalog"
+  ],
+  "types": [
+    "series"
+  ],
+  "catalogs": [
+    {
+      "type": "series",
+      "id": "custom.harry_potter_hbo",
+      "name": "Harry Potter HBO"
+    }
+  ]
+}

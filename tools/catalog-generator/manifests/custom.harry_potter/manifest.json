@@ -1,0 +1,19 @@
+{
+  "id": "org.custom.catalog.custom.harry_potter",
+  "version": "1.0.0",
+  "name": "Harry Potter",
+  "description": "Custom catalog generated via CatalogGen",
+  "resources": [
+    "catalog"
+  ],
+  "types": [
+    "movie"
+  ],
+  "catalogs": [
+    {
+      "type": "movie",
+      "id": "custom.harry_potter",
+      "name": "Harry Potter"
+    }
+  ]
+}

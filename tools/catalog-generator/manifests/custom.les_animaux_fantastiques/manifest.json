@@ -1,0 +1,19 @@
+{
+  "id": "org.custom.catalog.custom.les_animaux_fantastiques",
+  "version": "1.0.0",
+  "name": "Les Animaux Fantastiques",
+  "description": "Custom catalog generated via CatalogGen",
+  "resources": [
+    "catalog"
+  ],
+  "types": [
+    "movie"
+  ],
+  "catalogs": [
+    {
+      "type": "movie",
+      "id": "custom.les_animaux_fantastiques",
+      "name": "Les Animaux Fantastiques"
+    }
+  ]
+}

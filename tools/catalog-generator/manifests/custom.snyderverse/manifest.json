@@ -1,0 +1,19 @@
+{
+  "id": "org.custom.catalog.custom.snyderverse",
+  "version": "1.0.0",
+  "name": "SnyderVerse",
+  "description": "Custom catalog generated via CatalogGen",
+  "resources": [
+    "catalog"
+  ],
+  "types": [
+    "movie"
+  ],
+  "catalogs": [
+    {
+      "type": "movie",
+      "id": "custom.snyderverse",
+      "name": "SnyderVerse"
+    }
+  ]
+}

@@ -137,6 +137,21 @@
         <div id="load-list" style="display: flex; flex-direction: column; gap: 0.5rem; max-height: 300px; overflow-y: auto; padding-right: 5px;">
           <!-- Collections list injected here -->
         </div>
+
+        <div id="super-manifest-container" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+          <button id="generate-super-manifest-btn" class="btn btn-primary" style="width: 100%; display: flex; justify-content: center; gap: 0.5rem;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Tout ajouter (Générer Super Manifeste)
+          </button>
+          
+          <div id="super-manifest-result" class="hidden" style="margin-top: 1rem; padding: 1rem; background: var(--glass-bg); border-radius: 8px; border: 1px solid var(--accent);">
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem; font-weight: 600;">Lien du Super Manifeste :</p>
+            <div style="display: flex; gap: 0.5rem;">
+              <input type="text" id="super-manifest-url" class="glass-input" readonly style="flex: 1; border-color: var(--accent); color: var(--accent); font-size: 0.85rem; padding: 0.4rem;">
+              <button id="copy-super-url-btn" class="btn btn-primary" style="flex: 0 0 auto; padding: 0.4rem 0.8rem; font-size: 0.85rem;">Copier</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

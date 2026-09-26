@@ -27,6 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const closeLoadBtn = document.getElementById('close-load');
   const loadList = document.getElementById('load-list');
 
+  const generateSuperManifestBtn = document.getElementById('generate-super-manifest-btn');
+  const superManifestResult = document.getElementById('super-manifest-result');
+  const superManifestUrl = document.getElementById('super-manifest-url');
+  const copySuperUrlBtn = document.getElementById('copy-super-url-btn');
+
   // --- State ---
   let tmdbKey = localStorage.getItem('tmdb_api_key') || '';
   let githubToken = localStorage.getItem('github_token') || '';
@@ -336,6 +341,137 @@ document.addEventListener('DOMContentLoaded', () => {
 
   closeLoadBtn.addEventListener('click', () => {
     loadModal.classList.add('hidden');
+  });
+
+  // --- Super Manifest Logic ---
+  generateSuperManifestBtn.addEventListener('click', async () => {
+    if (!githubToken) {
+      alert("Veuillez configurer votre GitHub Token pour générer le super manifeste.");
+      settingsModal.classList.remove('hidden');
+      return;
+    }
+    
+    generateSuperManifestBtn.innerHTML = "Génération en cours... (ça peut prendre quelques secondes)";
+    generateSuperManifestBtn.disabled = true;
+    
+    try {
+      const owner = "Wayku-io";
+      const repo = "nuviowayku";
+      const path = `tools/catalog-generator/manifests`;
+      const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+      
+      const res = await fetch(url, { headers: { 'Authorization': `Bearer ${githubToken}`, 'Accept': 'application/vnd.github.v3+json' } });
+      if (!res.ok) throw new Error("Erreur de récupération des collections");
+      
+      const directories = await res.json();
+      if (!Array.isArray(directories) || directories.length === 0) {
+        throw new Error("Aucune collection trouvée");
+      }
+      
+      let allCatalogs = [];
+      let allCatalogFiles = [];
+      
+      for (const dir of directories) {
+        if (dir.type === 'dir' && dir.name !== 'super_manifest') {
+          try {
+            const manifestUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${dir.path}/manifest.json`;
+            const mRes = await fetch(manifestUrl, { headers: { 'Authorization': `Bearer ${githubToken}`, 'Accept': 'application/vnd.github.v3+json' } });
+            if (mRes.ok) {
+              const mData = await mRes.json();
+              const manifest = JSON.parse(decodeURIComponent(escape(atob(mData.content))));
+              if (manifest.catalogs) {
+                allCatalogs = allCatalogs.concat(manifest.catalogs);
+                
+                for (const cat of manifest.catalogs) {
+                   const catUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${dir.path}/catalog/${cat.type}/${cat.id}.json`;
+                   try {
+                     const cRes = await fetch(catUrl, { headers: { 'Authorization': `Bearer ${githubToken}`, 'Accept': 'application/vnd.github.v3+json' } });
+                     if (cRes.ok) {
+                       const cData = await cRes.json();
+                       const cObj = JSON.parse(decodeURIComponent(escape(atob(cData.content))));
+                       allCatalogFiles.push({
+                          type: cat.type,
+                          id: cat.id,
+                          contentObj: cObj
+                       });
+                     }
+                   } catch(e) { console.warn("Erreur chargement catalogue pour super manifest", e); }
+                }
+              }
+            }
+          } catch (err) {
+            console.warn("Skipped " + dir.name, err);
+          }
+        }
+      }
+      
+      if (allCatalogs.length === 0) throw new Error("Aucun catalogue trouvé dans les collections");
+      
+      const superManifest = {
+        id: "org.custom.super_manifest",
+        version: "1.0.0",
+        name: "Super Manifeste (Toutes les collections)",
+        description: "Regroupe toutes vos collections personnalisées",
+        resources: ["catalog"],
+        types: [...new Set(allCatalogs.map(c => c.type))],
+        catalogs: allCatalogs
+      };
+      
+      // Push file function
+      async function pushFile(filePath, contentObj, commitMessage) {
+        const pUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
+        let sha = null;
+        const getRes = await fetch(pUrl, { headers: { 'Authorization': `Bearer ${githubToken}` }});
+        if (getRes.ok) {
+          const getData = await getRes.json();
+          sha = getData.sha;
+        }
+        const contentStr = JSON.stringify(contentObj, null, 2);
+        const base64Content = btoa(unescape(encodeURIComponent(contentStr)));
+        const body = { message: commitMessage, content: base64Content, branch: 'main' };
+        if (sha) body.sha = sha;
+        const putRes = await fetch(pUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${githubToken}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(body)
+        });
+        if (!putRes.ok) throw new Error(`Erreur GitHub API sur ${filePath}`);
+        
+        fetch(`https://purge.jsdelivr.net/gh/${owner}/${repo}@main/${filePath}`).catch(() => {});
+      }
+
+      const superManifestPath = `tools/catalog-generator/manifests/super_manifest/manifest.json`;
+      await pushFile(superManifestPath, superManifest, "CatalogGen: Update super manifest");
+
+      for (const cf of allCatalogFiles) {
+        const catPath = `tools/catalog-generator/manifests/super_manifest/catalog/${cf.type}/${cf.id}.json`;
+        await pushFile(catPath, cf.contentObj, `CatalogGen: Update super manifest catalog ${cf.id}`);
+      }
+      
+      const jsDelivrUrl = `https://cdn.jsdelivr.net/gh/${owner}/${repo}@main/${superManifestPath}`;
+      superManifestUrl.value = jsDelivrUrl;
+      superManifestResult.classList.remove('hidden');
+      
+    } catch (e) {
+      alert("Erreur: " + e.message);
+    } finally {
+      generateSuperManifestBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        Tout ajouter (Générer Super Manifeste)
+      `;
+      generateSuperManifestBtn.disabled = false;
+    }
+  });
+
+  copySuperUrlBtn.addEventListener('click', () => {
+    superManifestUrl.select();
+    document.execCommand('copy');
+    const originalText = copySuperUrlBtn.textContent;
+    copySuperUrlBtn.textContent = 'Copié !';
+    setTimeout(() => copySuperUrlBtn.textContent = originalText, 1500);
   });
 
   // --- Search Logic ---

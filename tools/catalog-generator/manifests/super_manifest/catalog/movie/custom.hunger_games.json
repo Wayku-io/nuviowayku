@@ -1,0 +1,46 @@
+{
+  "metas": [
+    {
+      "id": "tmdb:70160",
+      "type": "movie",
+      "name": "Hunger Games",
+      "poster": "https://image.tmdb.org/t/p/w200/wSvsjqyRWk5xku9yEUNZYFwUF87.jpg",
+      "year": "2012"
+    },
+    {
+      "id": "tmdb:101299",
+      "type": "movie",
+      "name": "Hunger Games : L'Embrasement",
+      "poster": "https://image.tmdb.org/t/p/w200/32mRJXEjmpcVYcQFvzvXCLPsUgS.jpg",
+      "year": "2013"
+    },
+    {
+      "id": "tmdb:131631",
+      "type": "movie",
+      "name": "Hunger Games : La Révolte - Partie 1",
+      "poster": "https://image.tmdb.org/t/p/w200/4LzjVMUit99buiiuhqW4pe0OhmA.jpg",
+      "year": "2014"
+    },
+    {
+      "id": "tmdb:131634",
+      "type": "movie",
+      "name": "Hunger Games : La Révolte - Partie 2",
+      "poster": "https://image.tmdb.org/t/p/w200/ojFCU0K7Err8n87VOONrnrCcQxj.jpg",
+      "year": "2015"
+    },
+    {
+      "id": "tmdb:695721",
+      "type": "movie",
+      "name": "Hunger Games : La Ballade du serpent et de l'oiseau chanteur",
+      "poster": "https://image.tmdb.org/t/p/w200/q4EDvPcf956FgakWwcXiWdQEgxU.jpg",
+      "year": "2023"
+    },
+    {
+      "id": "tmdb:1300968",
+      "type": "movie",
+      "name": "Hunger Games: Lever de soleil sur la moisson",
+      "poster": "https://image.tmdb.org/t/p/w200/7w6v7FHdTbxuKqAPiMqKxEq8hro.jpg",
+      "year": "2026"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "metas": [
+    {
+      "id": "tmdb:1402",
+      "type": "series",
+      "name": "The Walking Dead",
+      "poster": "https://image.tmdb.org/t/p/w200/cVDzRylKifHGS1PFNlePfJ8sxUj.jpg",
+      "year": "2010"
+    },
+    {
+      "id": "tmdb:62286",
+      "type": "series",
+      "name": "Fear the Walking Dead",
+      "poster": "https://image.tmdb.org/t/p/w200/eKt4ELpQZUKGZCKIDobEbwHwk3I.jpg",
+      "year": "2015"
+    },
+    {
+      "id": "tmdb:94305",
+      "type": "series",
+      "name": "The Walking Dead : World Beyond",
+      "poster": "https://image.tmdb.org/t/p/w200/gCZ8ZJtcgSwFIjvA81UtbCObuZj.jpg",
+      "year": "2020"
+    },
+    {
+      "id": "tmdb:194583",
+      "type": "series",
+      "name": "The Walking Dead : Dead City",
+      "poster": "https://image.tmdb.org/t/p/w200/wq3vuQzQgbS83zX3malAFWMsSwX.jpg",
+      "year": "2023"
+    },
+    {
+      "id": "tmdb:211684",
+      "type": "series",
+      "name": "The Walking Dead : Daryl Dixon",
+      "poster": "https://image.tmdb.org/t/p/w200/sP5QdW9FN18XWcA4ROz3MPAQBTx.jpg",
+      "year": "2023"
+    },
+    {
+      "id": "tmdb:206586",
+      "type": "series",
+      "name": "The Walking Dead : The Ones Who Live",
+      "poster": "https://image.tmdb.org/t/p/w200/74aOc0caMTY0ILo7TezHernNXL2.jpg",
+      "year": "2024"
+    }
+  ]
+}

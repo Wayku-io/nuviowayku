@@ -1,0 +1,65 @@
+{
+  "id": "org.custom.super_manifest",
+  "version": "1.0.0",
+  "name": "Super Manifeste (Toutes les collections)",
+  "description": "Regroupe toutes vos collections personnalisées",
+  "resources": [
+    "catalog"
+  ],
+  "types": [
+    "series",
+    "movie"
+  ],
+  "catalogs": [
+    {
+      "type": "series",
+      "id": "custom.breaking_bad",
+      "name": "Breaking Bad"
+    },
+    {
+      "type": "movie",
+      "id": "custom.fast_and_furious",
+      "name": "Fast and Furious"
+    },
+    {
+      "type": "series",
+      "id": "custom.game_of_thrones",
+      "name": "Game of Thrones"
+    },
+    {
+      "type": "movie",
+      "id": "custom.harry_potter",
+      "name": "Harry Potter"
+    },
+    {
+      "type": "series",
+      "id": "custom.harry_potter_hbo",
+      "name": "Harry Potter HBO"
+    },
+    {
+      "type": "movie",
+      "id": "custom.hunger_games",
+      "name": "Hunger Games"
+    },
+    {
+      "type": "movie",
+      "id": "custom.les_animaux_fantastiques",
+      "name": "Les Animaux Fantastiques"
+    },
+    {
+      "type": "movie",
+      "id": "custom.retour_vers_le_futur",
+      "name": "Retour vers le futur"
+    },
+    {
+      "type": "movie",
+      "id": "custom.snyderverse",
+      "name": "SnyderVerse"
+    },
+    {
+      "type": "series",
+      "id": "custom.the_walking_dead",
+      "name": "The Walking Dead"
+    }
+  ]
+}
